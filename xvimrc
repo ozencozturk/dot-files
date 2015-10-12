@@ -1,0 +1,46 @@
+"ignore case whiling searching unless query is upper case
+set ignorecase smartcase
+
+let mapleader=","
+
+"relative to current line
+set relativenumber
+
+" Make clipboard and default register equivalent
+set clipboard=unnamed
+
+"modify change in paranthesis behavior
+nnoremap ci( f(ci(
+
+"highlight incremental search 
+set hlsearch
+
+"show modes at the bottom of editor
+set showmode
+
+"show number lines
+set number
+
+"keep visual mode after indent
+vnoremap < <gv
+vnoremap > >gv
+
+
+"copy file
+map <Leader>a  :%y<CR>
+
+map <C-j> <C-w>j<CR>
+map <C-k> <C-w>k<CR>
+map <C-h> <C-w>h<CR>
+map <C-l> <C-w>l<CR>
+
+" Reload .ideavimrc
+nnoremap <Space>vs :source ~/.xvimrc<CR>
+
+"remove arrow keys 
+"noremap <Up> <Nop>
+"noremap <Down> <Nop>
+"oremap <Left> <Nop>
+"oremap <Right> <Nop>
+
+
