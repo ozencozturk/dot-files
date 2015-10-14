@@ -14,17 +14,53 @@ Plugin 'ryanss/vim-hackernews'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wikitopian/hardmode'
-"Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
-Bundle "daylerees/colour-schemes", { "rtp": "vim/" }
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 "VUNDLE END
 
+"Basic movement
+nnoremap j gj
+nnoremap k gk
+xnoremap j gj
+xnoremap k gk
+nmap J 5j
+nmap K 5k
+xmap J 5j
+xmap K 5k
+"windows navigation
+nmap gh <C-w>h
+nmap gj <C-w>j
+nmap gk <C-w>k
+nmap gl <C-w>l
+onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
+xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
+onoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
+xnoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
+onoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
+xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
+onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
+xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
+function! s:NextTextObject(motion, dir)
+  let c = nr2char(getchar())
+
+  if c ==# "b"
+    let c = "("
+  elseif c ==# "B"
+    let c = "{"
+  elseif c ==# "d"
+    let c = "["
+  endif
+
+  exe "normal! ".a:dir.c."v".a:motion.c
+endfunction
 "copies the indent from previous line
 set autoindent
-	
+
+"change word indent
+nnoremap <C-u> mzg~iw`z	
+
 "tab indentation
 set tabstop=4
 set shiftwidth=4
@@ -36,21 +72,12 @@ set ignorecase smartcase
 let mapleader=","
 
 "relative to current line
-set relativenumber
-
-"change inside paranthesis at the beginning of line
-nnoremap ci( f(ci(
-
-"delete inside paranthesis at the beginning of line
-
-
-nnoremap di( f(di(
-
+"set relativenumber
+set number
 "change boundaries
 set cpoptions=ces$
 
 "Allow the cursor to go in to "invalid" places
-
 set virtualedit=all
 
 "show tab completion options
@@ -63,10 +90,6 @@ set complete=.,w,b,t
 filetype indent on
 
 "window navigation
-map <C-j> <C-w>j<CR>
-map <C-k> <C-w>k<CR>
-map <C-h> <C-w>h<CR>
-map <C-l> <C-w>l<CR>
 
 "higlight mathing etc
 set showmatch
