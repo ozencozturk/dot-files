@@ -1,7 +1,13 @@
-set nocompatible              " be iMproved, required
+set nocompatible
 
-
-"put a $ while changing word
+"copies the indent from previous line
+set autoindent
+	
+"tab indentation
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+		     
 "ignore case whiling searching unless query is upper case
 set ignorecase smartcase
 
@@ -10,41 +16,53 @@ let mapleader=","
 "relative to current line
 set relativenumber
 
-
-" change inside paranthesis at the beginning of line
+"change inside paranthesis at the beginning of line
 nnoremap ci( f(ci(
 
-" delete inside paranthesis at the beginning of line
+"delete inside paranthesis at the beginning of line
 nnoremap di( f(di(
 
+"change boundaries
 set cpoptions=ces$
-" Allow the cursor to go in to "invalid" places
+
+"Allow the cursor to go in to "invalid" places
+
 set virtualedit=all
+
 "show tab completion options
 set wildmenu
+
+"ctrl p ve ctrl n options 
+set complete=.,w,b,t
+
 "load filetype specific indentation
 filetype indent on
 
+"window navigation
 map <C-j> <C-w>j<CR>
 map <C-k> <C-w>k<CR>
 map <C-h> <C-w>h<CR>
 map <C-l> <C-w>l<CR>
 
-"higlight mathing ( etc
+"higlight mathing etc
 set showmatch
 set incsearch
 set hlsearch
+
+"showing current selected line
 set cursorline
+
 " for copy pasting system buffer
 set clipboard=unnamed
 set paste
 set go+=a
 
+"disable arrow keys
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
-filetype off                  " required
+filetype off      
 
 
 " set the runtime path to include Vundle and initialize
@@ -62,6 +80,8 @@ Plugin 'ryanss/vim-hackernews'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wikitopian/hardmode'
+"Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Bundle "daylerees/colour-schemes", { "rtp": "vim/" }
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -77,6 +97,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+syntax on
 syntax enable
 if has('gui_running')
     set background=light
@@ -85,4 +106,4 @@ else
 endif
 
 colorscheme solarized
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
