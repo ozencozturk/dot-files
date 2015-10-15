@@ -14,7 +14,6 @@ Plugin 'ryanss/vim-hackernews'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wikitopian/hardmode'
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -29,6 +28,17 @@ nmap J 5j
 nmap K 5k
 xmap J 5j
 xmap K 5k
+
+"go manual see https://github.com/AndrewRadev/Vimfiles/blob/master/personal/plugin/open.vim
+nnoremap gm :call Open('http://google.com/search?q=' . expand("<cword>"))<cr>
+
+" Open new tab more easily:
+nnoremap ,t :tabnew<cr>
+nnoremap ,T :tabedit %<cr>gT:quit<cr>
+" Moving through tabs:
+nnoremap <C-l> gt
+nnoremap <C-h> gT
+
 "windows navigation
 nmap gh <C-w>h
 nmap gj <C-w>j
@@ -57,6 +67,9 @@ function! s:NextTextObject(motion, dir)
 endfunction
 "copies the indent from previous line
 set autoindent
+
+"select vv
+nnoremap vv _vg_
 
 "change word indent
 nnoremap <C-u> mzg~iw`z	
@@ -89,8 +102,6 @@ set complete=.,w,b,t
 "load filetype specific indentation
 filetype indent on
 
-"window navigation
-
 "higlight mathing etc
 set showmatch
 set incsearch
@@ -110,7 +121,6 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-
 syntax on
 syntax enable
 if has('gui_running')
@@ -118,6 +128,5 @@ if has('gui_running')
 else
     set background=dark
 endif
-
 colorscheme solarized
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()

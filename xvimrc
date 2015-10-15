@@ -4,7 +4,13 @@ set ignorecase smartcase
 let mapleader=","
 
 "relative to current line
-set relativenumber
+set number
+
+" Faster scrolling:
+nmap J 5j
+nmap K 5k
+xmap J 5j
+xmap K 5k
 
 " Make clipboard and default register equivalent
 set clipboard=unnamed
