@@ -19,6 +19,12 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 "VUNDLE END
 
+let mapleader=","
+" NERD tree:
+nnoremap gn :NERDTreeToggle<cr>
+nnoremap gN :NERDTree<cr>
+nnoremap <Leader>f :NERDTreeFind<cr>
+
 "Basic movement
 nnoremap j gj
 nnoremap k gk
@@ -35,6 +41,7 @@ nnoremap gm :call Open('http://google.com/search?q=' . expand("<cword>"))<cr>
 " Open new tab more easily:
 nnoremap ,t :tabnew<cr>
 nnoremap ,T :tabedit %<cr>gT:quit<cr>
+
 " Moving through tabs:
 nnoremap <C-l> gt
 nnoremap <C-h> gT
@@ -82,7 +89,6 @@ set softtabstop=4
 "ignore case whiling searching unless query is upper case
 set ignorecase smartcase
 
-let mapleader=","
 
 "relative to current line
 "set relativenumber
