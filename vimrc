@@ -10,6 +10,8 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-eunuch'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'blueshirts/darcula'
+Plugin 'jpo/vim-railscasts-theme'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-surround'
@@ -164,15 +166,15 @@ noremap <Right> <Nop>
 
 syntax on
 syntax enable
-if has('gui_running')
-    set background=light
-else
-    set background=dark
-endif
-syntax enable
-colorscheme solarized
-"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+set t_Co=256
 
+set background=dark
+let g:rehash256 = 1
+
+"colorscheme railscasts
+"colorscheme solarized
+"colorscheme molokai
+colorscheme darcula
 " Delete left-hand side of assignment
 nnoremap d= df=x
 
@@ -265,3 +267,5 @@ endfunction
 
 set laststatus=2
 set statusline=%<%f%m\ \ %{getcwd()}\ \ \ %=\ Line:%l\/%L\ Column:%c%V\ %P
+
+"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
