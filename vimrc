@@ -9,19 +9,34 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
-Plugin 'joshhartigan/vim-reddit'
-Plugin 'ryanss/vim-hackernews'
+"Plugin 'joshhartigan/vim-reddit'
+"Plugin 'ryanss/vim-hackernews'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wikitopian/hardmode'
 Plugin 'tpope/vim-repeat'
 Plugin 'AndrewRadev/inline_edit.vim'
 Plugin 'ozencozturk/open.vim'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'godlygeek/tabular'                                 
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 "VUNDLE END
+
+nnoremap so :source ~/.vimrc<cr>
+
+" Completion remappings:
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
+inoremap <C-o> <C-x><C-o>
+inoremap <C-u> <C-x><C-u>
+inoremap <C-f> <C-x><C-f>
+inoremap <C-]> <C-x><C-]>
+inoremap <C-l> <C-x><C-l>
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 
 let mapleader=","
 " NERD tree:
@@ -158,6 +173,21 @@ nmap g/ :vimgrep /<C-R>//j %<CR>\|:cw<CR>
 " Open path with external application
 nnoremap gu :Open<cr>
 xnoremap gu :Open<cr>
+
+" Splitting and joining code blocks
+nnoremap sj :SplitjoinSplit<CR>
+nnoremap sk :SplitjoinJoin<CR>
+" Execute normal vim join if in visual mode
+xnoremap sk J
+
+" Execute a command, leaving the cursor on the current line
+function! s:InPlace(command)
+  let saved_view = winsaveview()
+  exe a:command
+  call winrestview(saved_view)
+endfunction
+
+nnoremap ++ :call <SID>InPlace('normal! gg=G')<cr>
 
 " Yank current file's filename
 nnoremap gy :call <SID>YankFilename(1)<cr>
