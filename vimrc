@@ -11,11 +11,13 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'joshhartigan/vim-reddit'
 Plugin 'ryanss/vim-hackernews'
-"Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wikitopian/hardmode'
-Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-repeat'
+Plugin 'AndrewRadev/inline_edit.vim'
+Plugin 'ozencozturk/open.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
