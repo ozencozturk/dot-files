@@ -6,11 +6,11 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-eunuch'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'joshhartigan/vim-reddit'
-"Plugin 'ryanss/vim-hackernews'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wikitopian/hardmode'
@@ -18,16 +18,25 @@ Plugin 'tpope/vim-repeat'
 Plugin 'AndrewRadev/inline_edit.vim'
 Plugin 'ozencozturk/open.vim'
 Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'godlygeek/tabular'                                 
+Plugin 'godlygeek/tabular'
+Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'pangloss/vim-javascript.git'
+Plugin 'elzr/vim-json'
+Plugin 'mattn/emmet-vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'justinj/vim-react-snippets'
+"Plugin 'bling/vim-airline'
+"Plugin 'Shutnik/jshint2'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 "VUNDLE END
 
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:syntastic_javascript_checkers = ['eslint']
 nnoremap so :source ~/.vimrc<cr>
 
-" Completion remappings:
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 inoremap <C-o> <C-x><C-o>
@@ -104,8 +113,9 @@ nnoremap <C-u> mzg~iw`z
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-		     
+set expandtab
 "ignore case whiling searching unless query is upper case
+
 set ignorecase smartcase
 
 
@@ -120,6 +130,12 @@ set virtualedit=all
 
 "show tab completion options
 set wildmenu
+
+set showcmd
+
+"display tabs and trailing spaces
+set list
+set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 
 "ctrl p ve ctrl n options 
 set complete=.,w,b,t
@@ -246,3 +262,6 @@ function! s:DeleteSurroundingFunctionCall()
   silent! call repeat#set('dsf')
 endfunction
 
+
+set laststatus=2
+set statusline=%<%f%m\ \ %{getcwd()}\ \ \ %=\ Line:%l\/%L\ Column:%c%V\ %P
