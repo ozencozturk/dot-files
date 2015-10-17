@@ -14,7 +14,7 @@ PROMPT_COMMAND=set_my_tab
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$ANDROID_HOME/tools:$PATH
 export PATH=$ANDROID_HOME/platform-tools:$PATH
-export EDITOR=atom
+"export EDITOR=atom
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 alias ls='ls -GFh'

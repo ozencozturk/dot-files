@@ -11,9 +11,11 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'joshhartigan/vim-reddit'
 Plugin 'ryanss/vim-hackernews'
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wikitopian/hardmode'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-repeat'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -134,5 +136,81 @@ if has('gui_running')
 else
     set background=dark
 endif
+syntax enable
 colorscheme solarized
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
+" Delete left-hand side of assignment
+nnoremap d= df=x
+
+" Text object for the visible screen - select visible screen
+onoremap a+ :<c-u>normal! HVL<cr>
+xnoremap a+ :<c-u>normal! HVL<cr>
+
+" Bufsurf
+nnoremap <c-w>< :BufSurfBack<CR>
+nnoremap <c-w>> :BufSurfForward<CR>
+
+" Show last search in quickfix (http://travisjeffery.com/b/2011/10/m-x-occur-for-vim/)
+nmap g/ :vimgrep /<C-R>//j %<CR>\|:cw<CR>
+" Open path with external application
+nnoremap gu :Open<cr>
+xnoremap gu :Open<cr>
+
+" Yank current file's filename
+nnoremap gy :call <SID>YankFilename(1)<cr>
+nnoremap gY :call <SID>YankFilename(0)<cr>
+function! s:YankFilename(relative)
+  let @@ = expand('%:p')
+
+  if a:relative " then relativize it
+    let @@ = fnamemodify(@@, ':~:.')
+  endif
+
+  let @* = @@
+  let @+ = @@
+
+  echo 'Yanked "'.@@.'" to clipboard'
+endfunction
+
+" Quit tab, even if it's just one
+nnoremap <silent> QQ :call <SID>QQ()<cr>
+function! s:QQ()
+  for bufnr in tabpagebuflist()
+    if bufexists(bufnr)
+      let winnr = bufwinnr(bufnr)
+      exe winnr.'wincmd w'
+      quit
+    endif
+  endfor
+endfunction
+
+
+" Delete surrounding function call
+" Relies on surround.vim
+nnoremap <silent> dsf :call <SID>DeleteSurroundingFunctionCall()<cr>
+function! s:DeleteSurroundingFunctionCall()
+  if search('\k\+\zs[([]', 'b', line('.')) <= 0
+    return
+  endif
+
+  " what's the opening bracket?
+  let opener = getline('.')[col('.') - 1]
+
+  " go back one word to get to the beginning of the function call
+  normal! b
+
+  " now we're on the function's name, see if we should move back some more
+  let prefix = strpart(getline('.'), 0, col('.') - 1)
+  while prefix =~ '\k\(\.\|::\|:\)$'
+    if search('\k\+', 'b', line('.')) <= 0
+      break
+    endif
+    let prefix = strpart(getline('.'), 0, col('.') - 1)
+  endwhile
+
+  exe 'normal! dt'.opener
+  exe 'normal ds'.opener
+  silent! call repeat#set('dsf')
+endfunction
+
