@@ -13,6 +13,9 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'blueshirts/darcula'
 Plugin 'jpo/vim-railscasts-theme'
 Plugin 'scrooloose/nerdtree'
+Plugin 'mileszs/ack.vim'
+Plugin 'vim-scripts/nerdtree-ack'
+Plugin 'ozencozturk/nerdtreeopenexternal'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wikitopian/hardmode'
@@ -265,10 +268,16 @@ function! s:DeleteSurroundingFunctionCall()
   silent! call repeat#set('dsf')
 endfunction
 
-
+"adjust status bar
 set laststatus=2
 set statusline=%<%f%m\ \ %{getcwd()}\ \ \ %=\ Line:%l\/%L\ Column:%c%V\ %P
+
+"Disable exmode
 nnoremap Q <nop>
 
+"adjust ctrlp search dir according to nerdtree
+let g:NERDTreeChDirMode       = 2
+let g:ctrlp_working_path_mode = 'rw'
 "command -nargs=* -complete=help Help vertical belowright help <args>
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
