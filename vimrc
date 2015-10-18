@@ -35,6 +35,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 "VUNDLE END
 
+
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 let g:syntastic_javascript_checkers = ['eslint']
 nnoremap so :source ~/.vimrc<cr>
@@ -268,4 +269,5 @@ endfunction
 set laststatus=2
 set statusline=%<%f%m\ \ %{getcwd()}\ \ \ %=\ Line:%l\/%L\ Column:%c%V\ %P
 
+command -nargs=* -complete=help Help vertical belowright help <args>
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
