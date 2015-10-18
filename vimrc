@@ -280,4 +280,8 @@ let g:NERDTreeChDirMode       = 2
 let g:ctrlp_working_path_mode = 'rw'
 "command -nargs=* -complete=help Help vertical belowright help <args>
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+if exists("g:loaded_nerdree_showinfinder")
+  finish
+endif
+let g:loaded_nerdree_showinfinder = 1
 
