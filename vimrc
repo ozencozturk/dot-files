@@ -269,5 +269,5 @@ endfunction
 set laststatus=2
 set statusline=%<%f%m\ \ %{getcwd()}\ \ \ %=\ Line:%l\/%L\ Column:%c%V\ %P
 
-command -nargs=* -complete=help Help vertical belowright help <args>
+"command -nargs=* -complete=help Help vertical belowright help <args>
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
