@@ -56,10 +56,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 " Edit the vimrc file
 nmap <silent> ,ev :e $MYVIMRC<CR>
 nmap <silent> ,sv :so $MYVIMRC<CR>
-
 " Alright... let's try this out
 imap jj <ESC>
 cmap jj <ESC>
+vmap v <ESC>
 set timeoutlen=500
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
