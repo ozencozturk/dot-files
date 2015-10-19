@@ -30,7 +30,6 @@ Plugin 'elzr/vim-json'
 Plugin 'mattn/emmet-vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'justinj/vim-react-snippets'
-"Plugin 'bling/vim-airline'
 "Plugin 'Shutnik/jshint2'
 
 " All of your Plugins must be added before the following line
@@ -85,6 +84,8 @@ nmap gh <C-w>h
 nmap gj <C-w>j
 nmap gk <C-w>k
 nmap gl <C-w>l
+
+"go to text objects din( din paranthesis etc
 onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
 xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
 onoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
@@ -124,8 +125,6 @@ set expandtab
 
 set ignorecase smartcase
 
-
-"relative to current line
 "set relativenumber
 set number
 "change boundaries
@@ -171,7 +170,6 @@ noremap <Right> <Nop>
 syntax on
 syntax enable
 set t_Co=256
-
 set background=dark
 let g:rehash256 = 1
 
@@ -179,6 +177,7 @@ let g:rehash256 = 1
 "colorscheme solarized
 "colorscheme molokai
 colorscheme darcula
+
 " Delete left-hand side of assignment
 nnoremap d= df=x
 
