@@ -59,8 +59,8 @@ nmap <silent> ,ev :e $MYVIMRC<CR>
 nmap <silent> ,sv :so $MYVIMRC<CR>
 
 " Alright... let's try this out
-imap jk <ESC>
-cmap jk <ESC>
+imap jj <ESC>
+cmap jj <ESC>
 set timeoutlen=500
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
