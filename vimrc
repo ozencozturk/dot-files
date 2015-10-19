@@ -32,17 +32,36 @@ Plugin 'mxw/vim-jsx'
 Plugin 'justinj/vim-react-snippets'
 Plugin 'ton/vim-bufsurf'
 Plugin 'bufkill.vim'
-
+Plugin 'nanotech/jellybeans.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 "VUNDLE END
 
+function! HighlightAllOfWord(onoff)
+  if a:onoff == 1
+    :augroup highlight_all
+    :au!
+    :au CursorMoved * silent! exe printf('match Search /\<%s\>/', expand('<cword>'))
+    :augroup END
+  else
+    :au! highlight_all
+    match none /\<%s\>/
+  endif
+endfunction
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 let g:syntastic_javascript_checkers = ['eslint']
-nnoremap so :source ~/.vimrc<cr>
 
+
+" Edit the vimrc file
+nmap <silent> ,ev :e $MYVIMRC<CR>
+nmap <silent> ,sv :so $MYVIMRC<CR>
+
+" Alright... let's try this out
+imap jk <ESC>
+cmap jk <ESC>
+set timeoutlen=500
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 inoremap <C-o> <C-x><C-o>
@@ -179,7 +198,7 @@ let g:rehash256 = 1
 "colorscheme solarized
 "colorscheme molokai
 colorscheme darcula
-
+"colorscheme jellybeans
 " Delete left-hand side of assignment
 nnoremap d= df=x
 
@@ -288,10 +307,25 @@ map <C-n> :BufSurfForward<CR>
 
 " Set up the gui cursor to look nice
 
+set nobackup
+set nowritebackup
+set noswapfile
+
+
+" Automatically read a file that has changed on disk
+set autoread
+
+" These commands open folds
+set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
+
 set history=100
 
-" Types of files to ignore when autocompleting things
-
+function! BWipeoutAll()
+  let lastbuf = bufnr('$')
+  let ids = sort(filter(range(1, bufnr('$')), 'bufexists(v:val)'))
+  execute ":" . ids[0] . "," . lastbuf . "bwipeout"
+  unlet lastbuf
+endfunction
 nmap <silent> ,wa :call BWipeoutAll()<cr>
 
 set wildignore+=*.o,*.class,*.git,*.svn
