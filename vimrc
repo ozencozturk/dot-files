@@ -1,5 +1,4 @@
 set nocompatible
-
 "VUNDLE BEGIN
 filetype off      
 " set the runtime path to include Vundle and initialize
@@ -179,8 +178,17 @@ set cursorline
 
 " for copy pasting system buffer
 set clipboard=unnamed
-"set paste
 set go+=a
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
 
 "disable arrow keys
 noremap <Up> <Nop>
