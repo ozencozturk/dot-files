@@ -31,7 +31,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'justinj/vim-react-snippets'
 Plugin 'ton/vim-bufsurf'
-"Plugin 'Shutnik/jshint2'
+Plugin 'bufkill.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -137,6 +137,7 @@ set virtualedit=all
 "show tab completion options
 set wildmenu
 
+"show info about current cmd at the bottom of screen
 set showcmd
 
 "display tabs and trailing spaces
@@ -280,3 +281,20 @@ let g:NERDTreeChDirMode       = 2
 let g:ctrlp_working_path_mode = 'rw'
 "command -nargs=* -complete=help Help vertical belowright help <args>
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
+" plugins maps
+map <C-p> :BufSurfBack<CR>
+map <C-n> :BufSurfForward<CR>
+
+" Set up the gui cursor to look nice
+
+set history=100
+
+" Types of files to ignore when autocompleting things
+
+nmap <silent> ,wa :call BWipeoutAll()<cr>
+
+set wildignore+=*.o,*.class,*.git,*.svn
+
+
+
