@@ -30,6 +30,7 @@ Plugin 'elzr/vim-json'
 Plugin 'mattn/emmet-vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'justinj/vim-react-snippets'
+Plugin 'ton/vim-bufsurf'
 "Plugin 'Shutnik/jshint2'
 
 " All of your Plugins must be added before the following line
@@ -238,9 +239,9 @@ function! s:QQ()
   endfor
 endfunction
 
-
 " Delete surrounding function call
 " Relies on surround.vim
+" function_call(cursor_here) => dsf => cursor_here
 nnoremap <silent> dsf :call <SID>DeleteSurroundingFunctionCall()<cr>
 function! s:DeleteSurroundingFunctionCall()
   if search('\k\+\zs[([]', 'b', line('.')) <= 0
@@ -279,8 +280,3 @@ let g:NERDTreeChDirMode       = 2
 let g:ctrlp_working_path_mode = 'rw'
 "command -nargs=* -complete=help Help vertical belowright help <args>
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-if exists("g:loaded_nerdree_showinfinder")
-  finish
-endif
-let g:loaded_nerdree_showinfinder = 1
-
