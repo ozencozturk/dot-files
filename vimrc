@@ -61,8 +61,6 @@ imap jj <ESC>
 cmap jj <ESC>
 vmap v <ESC>
 set timeoutlen=500
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
 inoremap <C-o> <C-x><C-o>
 inoremap <C-u> <C-x><C-u>
 inoremap <C-f> <C-x><C-f>
@@ -70,13 +68,12 @@ inoremap <C-]> <C-x><C-]>
 inoremap <C-l> <C-x><C-l>
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
-
 let mapleader=","
 " NERD tree:
 nnoremap gn :NERDTreeToggle<cr>
 nnoremap gN :NERDTree<cr>
 nnoremap <Leader>f :NERDTreeFind<cr>
-
+let NERDTreeShowBookmarks=1
 "Basic movement
 nnoremap j gj
 nnoremap k gk
@@ -93,10 +90,6 @@ nnoremap gm :call Open('http://google.com/search?q=' . expand("<cword>"))<cr>
 " Open new tab more easily:
 nnoremap ,t :tabnew<cr>
 nnoremap ,T :tabedit %<cr>gT:quit<cr>
-
-" Moving through tabs:
-nnoremap <C-l> gt
-nnoremap <C-h> gT
 
 "windows navigation
 nmap gh <C-w>h
