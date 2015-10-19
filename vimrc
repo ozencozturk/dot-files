@@ -179,7 +179,7 @@ set cursorline
 
 " for copy pasting system buffer
 set clipboard=unnamed
-set paste
+"set paste
 set go+=a
 
 "disable arrow keys
