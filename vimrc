@@ -65,7 +65,6 @@ inoremap <C-o> <C-x><C-o>
 inoremap <C-u> <C-x><C-u>
 inoremap <C-f> <C-x><C-f>
 inoremap <C-]> <C-x><C-]>
-inoremap <C-l> <C-x><C-l>
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 let mapleader=","
@@ -89,7 +88,6 @@ nnoremap gm :call Open('http://google.com/search?q=' . expand("<cword>"))<cr>
 
 " Open new tab more easily:
 nnoremap ,t :tabnew<cr>
-nnoremap ,T :tabedit %<cr>gT:quit<cr>
 
 "windows navigation
 nmap gh <C-w>h
@@ -97,6 +95,20 @@ nmap gj <C-w>j
 nmap gk <C-w>k
 nmap gl <C-w>l
 
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
+map <C-L> :tabn<CR>
+map <C-H> :tabp<CR>
+" plugins maps
+"map <C-j> :bn<CR>
+"map <C-k> :bp<CR>
+
+" Bufsurf
+"nnoremap <c-w>< :BufSurfBack<CR>
+"nnoremap <c-w>> :BufSurfForward<CR>
+"tab navigation
+"nnoremap <C-l> gt
+"nnoremap <C-h> gT
 "go to text objects din( din paranthesis etc
 onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
 xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
@@ -207,9 +219,6 @@ nnoremap d= df=x
 onoremap a+ :<c-u>normal! HVL<cr>
 xnoremap a+ :<c-u>normal! HVL<cr>
 
-" Bufsurf
-nnoremap <c-w>< :BufSurfBack<CR>
-nnoremap <c-w>> :BufSurfForward<CR>
 
 " Show last search in quickfix (http://travisjeffery.com/b/2011/10/m-x-occur-for-vim/)
 nmap g/ :vimgrep /<C-R>//j %<CR>\|:cw<CR>
@@ -301,10 +310,6 @@ let g:NERDTreeChDirMode       = 2
 let g:ctrlp_working_path_mode = 'rw'
 "command -nargs=* -complete=help Help vertical belowright help <args>
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-
-" plugins maps
-map <C-p> :BufSurfBack<CR>
-map <C-n> :BufSurfForward<CR>
 
 " Set up the gui cursor to look nice
 
