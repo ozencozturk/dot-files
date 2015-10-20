@@ -99,16 +99,10 @@ map <C-J> :bnext<CR>
 map <C-K> :bprev<CR>
 map <C-L> :tabn<CR>
 map <C-H> :tabp<CR>
-" plugins maps
-"map <C-j> :bn<CR>
-"map <C-k> :bp<CR>
-
 " Bufsurf
 "nnoremap <c-w>< :BufSurfBack<CR>
 "nnoremap <c-w>> :BufSurfForward<CR>
 "tab navigation
-"nnoremap <C-l> gt
-"nnoremap <C-h> gT
 "go to text objects din( din paranthesis etc
 onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
 xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
@@ -138,7 +132,7 @@ set autoindent
 nnoremap vv _vg_
 
 "change word indent
-nnoremap <C-u> mzg~iw`z	
+"nnoremap <C-u> mzg~iw`z	
 
 "tab indentation
 set tabstop=4
@@ -336,5 +330,4 @@ nmap <silent> ,wa :call BWipeoutAll()<cr>
 
 set wildignore+=*.o,*.class,*.git,*.svn
 
-
-
+command -nargs=* -complete=help Help vertical belowright help <args>
