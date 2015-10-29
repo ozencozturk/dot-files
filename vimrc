@@ -36,7 +36,7 @@ Plugin 'nanotech/jellybeans.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 "VUNDLE END
-
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 function! HighlightAllOfWord(onoff)
   if a:onoff == 1
     :augroup highlight_all
@@ -330,4 +330,4 @@ nmap <silent> ,wa :call BWipeoutAll()<cr>
 
 set wildignore+=*.o,*.class,*.git,*.svn
 
-command -nargs=* -complete=help Help vertical belowright help <args>
+"command -nargs=* -complete=help Help vertical belowright help <args>
