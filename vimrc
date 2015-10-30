@@ -62,8 +62,8 @@ imap jj <ESC>
 cmap jj <ESC>
 vmap v <ESC>
 set timeoutlen=500
-inoremap <C-o> <C-x><C-o>
-inoremap <C-u> <C-x><C-u>
+"inoremap <C-o> <C-x><C-o>
+"inoremap <C-u> <C-x><C-u>
 inoremap <C-f> <C-x><C-f>
 inoremap <C-]> <C-x><C-]>
 filetype plugin on
@@ -218,8 +218,8 @@ xnoremap a+ :<c-u>normal! HVL<cr>
 " Show last search in quickfix (http://travisjeffery.com/b/2011/10/m-x-occur-for-vim/)
 nmap g/ :vimgrep /<C-R>//j %<CR>\|:cw<CR>
 " Open path with external application
-nnoremap gu :Open<cr>
-xnoremap gu :Open<cr>
+"nnoremap gu :Open<cr>
+"xnoremap gu :Open<cr>
 
 " Splitting and joining code blocks
 nnoremap sj :SplitjoinSplit<CR>
