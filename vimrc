@@ -52,10 +52,10 @@ cmap jj <ESC>
 vmap v <ESC>
 set timeoutlen=500
 
-"inoremap <C-o> <C-x><C-o>
-"inoremap <C-u> <C-x><C-u>
-inoremap <C-f> <C-x><C-f>
-inoremap <C-]> <C-x><C-]>
+"inoremap <C-o> <C-x><C-o>       "omnicompletion
+"inoremap <C-u> <C-x><C-u>       "user defined completion
+inoremap <C-f> <C-x><C-f>        "file completion
+"inoremap <C-]> <C-x><C-]>       "tag completion
 
 set omnifunc=syntaxcomplete#Complete
 let mapleader=","
@@ -86,14 +86,17 @@ nmap gj <C-w>j
 nmap gk <C-w>k
 nmap gl <C-w>l
 
+"buffer navigation
 map <C-J> :bnext<CR>
 map <C-K> :bprev<CR>
-map <C-L> :tabn<CR>
-map <C-H> :tabp<CR>
 " Bufsurf
 "nnoremap <c-w>< :BufSurfBack<CR>
 "nnoremap <c-w>> :BufSurfForward<CR>
+
 "tab navigation
+map <C-L> :tabn<CR>
+map <C-H> :tabp<CR>
+
 "go to text objects din( din paranthesis etc
 onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
 xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
