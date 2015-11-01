@@ -6,6 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'tpope/vim-commentary'
+Plugin 'kshenoy/vim-signature'
 Plugin 'tpope/vim-eunuch'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
@@ -323,5 +324,5 @@ endfunction
 nmap <silent> ,wa :call BWipeoutAll()<cr>
 
 set wildignore+=*.o,*.class,*.git,*.svn
-
 "command -nargs=* -complete=help Help vertical belowright help <args>
+let NERDTreeHijackNetrw = 1
