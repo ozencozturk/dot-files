@@ -38,35 +38,25 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 "VUNDLE END
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-function! HighlightAllOfWord(onoff)
-  if a:onoff == 1
-    :augroup highlight_all
-    :au!
-    :au CursorMoved * silent! exe printf('match Search /\<%s\>/', expand('<cword>'))
-    :augroup END
-  else
-    :au! highlight_all
-    match none /\<%s\>/
-  endif
-endfunction
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 let g:syntastic_javascript_checkers = ['eslint']
 
-
 " Edit the vimrc file
 nmap <silent> ,ev :e $MYVIMRC<CR>
 nmap <silent> ,sv :so $MYVIMRC<CR>
+
 " Alright... let's try this out
 imap jj <ESC>
 cmap jj <ESC>
 vmap v <ESC>
 set timeoutlen=500
+
 "inoremap <C-o> <C-x><C-o>
 "inoremap <C-u> <C-x><C-u>
 inoremap <C-f> <C-x><C-f>
 inoremap <C-]> <C-x><C-]>
-filetype plugin on
+
 set omnifunc=syntaxcomplete#Complete
 let mapleader=","
 " NERD tree:
