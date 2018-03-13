@@ -9,6 +9,7 @@ call vundle#begin()
 "Plugin 'tpope/vim-commentary'
 Plugin 'kshenoy/vim-signature'
 "Plugin 'tpope/vim-eunuch'
+Plugin 'ozencozturk/open.vim' 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
@@ -35,9 +36,7 @@ filetype plugin indent on    " required
 nmap <silent> ,ev :e $MYVIMRC<CR>
 nmap <silent> ,sv :so $MYVIMRC<CR>
 
-" Alright... let's try this out
-vmap v <ESC>
-set timeoutlen=500
+"set timeoutlen=500
 
 let mapleader=","
 
@@ -84,12 +83,13 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-"ignore case whiling searching unless query is upper case
 
+"ignore case whiling searching unless query is upper case
 set ignorecase smartcase
 
-"set relativenumber
+"show numbers in left
 set number
+
 "change boundaries
 set cpoptions=ces$
 
@@ -107,7 +107,7 @@ set list
 set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 
 "ctrl p ve ctrl n options 
-set complete=.,w,b,t
+"set complete=.,w,b,t
 
 "load filetype specific indentation
 filetype indent on
