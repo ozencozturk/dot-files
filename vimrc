@@ -26,22 +26,13 @@ Plugin 'ozencozturk/open.vim'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'nelstrom/vim-visual-star-search'
-Plugin 'pangloss/vim-javascript.git'
 Plugin 'elzr/vim-json'
 Plugin 'mattn/emmet-vim'
-Plugin 'mxw/vim-jsx'
-Plugin 'justinj/vim-react-snippets'
-Plugin 'ton/vim-bufsurf'
-Plugin 'bufkill.vim'
 Plugin 'nanotech/jellybeans.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 "VUNDLE END
-"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-let g:syntastic_javascript_checkers = ['eslint']
 
 " Edit the vimrc file
 nmap <silent> ,ev :e $MYVIMRC<CR>
@@ -53,18 +44,8 @@ cmap jj <ESC>
 vmap v <ESC>
 set timeoutlen=500
 
-"inoremap <C-o> <C-x><C-o>       "omnicompletion
-"inoremap <C-u> <C-x><C-u>       "user defined completion
-inoremap <C-f> <C-x><C-f>        "file completion
-"inoremap <C-]> <C-x><C-]>       "tag completion
-
-set omnifunc=syntaxcomplete#Complete
 let mapleader=","
-" NERD tree:
-nnoremap gn :NERDTreeToggle<cr>
-nnoremap gN :NERDTree<cr>
-nnoremap <Leader>f :NERDTreeFind<cr>
-let NERDTreeShowBookmarks=1
+
 "Basic movement
 nnoremap j gj
 nnoremap k gk
@@ -77,26 +58,6 @@ xmap K 5k
 
 "go manual see https://github.com/AndrewRadev/Vimfiles/blob/master/personal/plugin/open.vim
 nnoremap gm :call Open('http://google.com/search?q=' . expand("<cword>"))<cr>
-
-" Open new tab more easily:
-nnoremap ,t :tabnew<cr>
-
-"windows navigation
-nmap gh <C-w>h
-nmap gj <C-w>j
-nmap gk <C-w>k
-nmap gl <C-w>l
-
-"buffer navigation
-map <C-J> :bnext<CR>
-map <C-K> :bprev<CR>
-" Bufsurf
-"nnoremap <c-w>< :BufSurfBack<CR>
-"nnoremap <c-w>> :BufSurfForward<CR>
-
-"tab navigation
-map <C-L> :tabn<CR>
-map <C-H> :tabp<CR>
 
 "go to text objects din( din paranthesis etc
 onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
@@ -122,12 +83,6 @@ function! s:NextTextObject(motion, dir)
 endfunction
 "copies the indent from previous line
 set autoindent
-
-"select vv
-nnoremap vv _vg_
-
-"change word indent
-"nnoremap <C-u> mzg~iw`z	
 
 "tab indentation
 set tabstop=4
@@ -196,67 +151,7 @@ set t_Co=256
 set background=dark
 let g:rehash256 = 1
 
-"colorscheme railscasts
-"colorscheme solarized
-"colorscheme molokai
 colorscheme darcula
-"colorscheme jellybeans
-" Delete left-hand side of assignment
-nnoremap d= df=x
-
-" Text object for the visible screen - select visible screen
-onoremap a+ :<c-u>normal! HVL<cr>
-xnoremap a+ :<c-u>normal! HVL<cr>
-
-
-" Show last search in quickfix (http://travisjeffery.com/b/2011/10/m-x-occur-for-vim/)
-nmap g/ :vimgrep /<C-R>//j %<CR>\|:cw<CR>
-" Open path with external application
-"nnoremap gu :Open<cr>
-"xnoremap gu :Open<cr>
-
-" Splitting and joining code blocks
-nnoremap sj :SplitjoinSplit<CR>
-nnoremap sk :SplitjoinJoin<CR>
-" Execute normal vim join if in visual mode
-xnoremap sk J
-
-" Execute a command, leaving the cursor on the current line
-function! s:InPlace(command)
-  let saved_view = winsaveview()
-  exe a:command
-  call winrestview(saved_view)
-endfunction
-
-nnoremap ++ :call <SID>InPlace('normal! gg=G')<cr>
-
-" Yank current file's filename
-nnoremap gy :call <SID>YankFilename(1)<cr>
-nnoremap gY :call <SID>YankFilename(0)<cr>
-function! s:YankFilename(relative)
-  let @@ = expand('%:p')
-
-  if a:relative " then relativize it
-    let @@ = fnamemodify(@@, ':~:.')
-  endif
-
-  let @* = @@
-  let @+ = @@
-
-  echo 'Yanked "'.@@.'" to clipboard'
-endfunction
-
-" Quit tab, even if it's just one
-nnoremap <silent> QQ :call <SID>QQ()<cr>
-function! s:QQ()
-  for bufnr in tabpagebuflist()
-    if bufexists(bufnr)
-      let winnr = bufwinnr(bufnr)
-      exe winnr.'wincmd w'
-      quit
-    endif
-  endfor
-endfunction
 
 " Delete surrounding function call
 " Relies on surround.vim
@@ -291,17 +186,6 @@ endfunction
 set laststatus=2
 set statusline=%<%f%m\ \ %{getcwd()}\ \ \ %=\ Line:%l\/%L\ Column:%c%V\ %P
 
-"Disable exmode
-nnoremap Q <nop>
-
-"adjust ctrlp search dir according to nerdtree
-let g:NERDTreeChDirMode       = 2
-let g:ctrlp_working_path_mode = 'rw'
-"command -nargs=* -complete=help Help vertical belowright help <args>
-"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-
-" Set up the gui cursor to look nice
-
 set nobackup
 set nowritebackup
 set noswapfile
@@ -310,19 +194,4 @@ set noswapfile
 " Automatically read a file that has changed on disk
 set autoread
 
-" These commands open folds
-set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
-
 set history=100
-
-function! BWipeoutAll()
-  let lastbuf = bufnr('$')
-  let ids = sort(filter(range(1, bufnr('$')), 'bufexists(v:val)'))
-  execute ":" . ids[0] . "," . lastbuf . "bwipeout"
-  unlet lastbuf
-endfunction
-nmap <silent> ,wa :call BWipeoutAll()<cr>
-
-set wildignore+=*.o,*.class,*.git,*.svn
-"command -nargs=* -complete=help Help vertical belowright help <args>
-let NERDTreeHijackNetrw = 1
