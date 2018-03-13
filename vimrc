@@ -5,30 +5,27 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'tpope/vim-commentary'
+"Plugin 'AndrewRadev/dsf.vim'
+"Plugin 'tpope/vim-commentary'
 Plugin 'kshenoy/vim-signature'
-Plugin 'tpope/vim-eunuch'
+"Plugin 'tpope/vim-eunuch'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 Plugin 'blueshirts/darcula'
 Plugin 'jpo/vim-railscasts-theme'
-Plugin 'scrooloose/nerdtree'
-Plugin 'mileszs/ack.vim'
-Plugin 'vim-scripts/nerdtree-ack'
-Plugin 'ozencozturk/nerdtreeopenexternal'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'wikitopian/hardmode'
-Plugin 'tpope/vim-repeat'
-Plugin 'AndrewRadev/inline_edit.vim'
-Plugin 'ozencozturk/open.vim'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'nelstrom/vim-visual-star-search'
-Plugin 'elzr/vim-json'
-Plugin 'mattn/emmet-vim'
 Plugin 'nanotech/jellybeans.vim'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'mileszs/ack.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'tpope/vim-surround'
+Plugin 'wikitopian/hardmode'
+"Plugin 'tpope/vim-repeat'
+"Plugin 'AndrewRadev/inline_edit.vim'
+"Plugin 'ozencozturk/open.vim'
+"Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'nelstrom/vim-visual-star-search'
+"Plugin 'elzr/vim-json'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -39,8 +36,6 @@ nmap <silent> ,ev :e $MYVIMRC<CR>
 nmap <silent> ,sv :so $MYVIMRC<CR>
 
 " Alright... let's try this out
-imap jj <ESC>
-cmap jj <ESC>
 vmap v <ESC>
 set timeoutlen=500
 
@@ -125,73 +120,21 @@ set hlsearch
 "showing current selected line
 set cursorline
 
-" for copy pasting system buffer
-set clipboard=unnamed
-set go+=a
-let &t_SI .= "\<Esc>[?2004h"
-let &t_EI .= "\<Esc>[?2004l"
-
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
-
 "disable arrow keys
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-syntax on
+"syntax enable will keep your current color settings
 syntax enable
-set t_Co=256
-set background=dark
-let g:rehash256 = 1
-
 colorscheme darcula
-
-" Delete surrounding function call
-" Relies on surround.vim
-" function_call(cursor_here) => dsf => cursor_here
-nnoremap <silent> dsf :call <SID>DeleteSurroundingFunctionCall()<cr>
-function! s:DeleteSurroundingFunctionCall()
-  if search('\k\+\zs[([]', 'b', line('.')) <= 0
-    return
-  endif
-
-  " what's the opening bracket?
-  let opener = getline('.')[col('.') - 1]
-
-  " go back one word to get to the beginning of the function call
-  normal! b
-
-  " now we're on the function's name, see if we should move back some more
-  let prefix = strpart(getline('.'), 0, col('.') - 1)
-  while prefix =~ '\k\(\.\|::\|:\)$'
-    if search('\k\+', 'b', line('.')) <= 0
-      break
-    endif
-    let prefix = strpart(getline('.'), 0, col('.') - 1)
-  endwhile
-
-  exe 'normal! dt'.opener
-  exe 'normal ds'.opener
-  silent! call repeat#set('dsf')
-endfunction
 
 "adjust status bar
 set laststatus=2
 set statusline=%<%f%m\ \ %{getcwd()}\ \ \ %=\ Line:%l\/%L\ Column:%c%V\ %P
 
+"disable vim backup files
 set nobackup
 set nowritebackup
 set noswapfile
-
-
-" Automatically read a file that has changed on disk
-set autoread
-
-set history=100
